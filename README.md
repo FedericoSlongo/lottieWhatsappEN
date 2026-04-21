@@ -1,39 +1,39 @@
 # 🧩 Lottie Sticker Builder (WAS) — Beta
 
-Transforma uma imagem (**buffer** ou **arquivo**) em uma figurinha animada `.was` (Lottie) pronta pra usar no WhatsApp.
+Transforms an image (**buffer** or **file**) into an animated `.was` sticker (Lottie) ready to use on WhatsApp.
 
 ---
 
-## ⚡ Instalação
+## ⚡ Installation
 
-### 1. Clone ou baixe o projeto
+### 1. Clone or download the project
 
 ```bash
 git clone https://github.com/Pedrozz13755/Lottie-Whatsapp.git
 cd Lottie-Whatsapp
 ```
 
-Ou, se preferir, só coloque os arquivos dentro do teu próprio projeto.
+Or, if you prefer, just place the files inside your own project.
 
 ---
 
-### 2. Instale as dependências necessárias
+### 2. Install the required dependencies
 
-Esse código usa apenas módulos nativos do Node.js, mas precisa que o comando `zip` esteja instalado no sistema.
+This code uses only native Node.js modules, but the `zip` command must be installed on the system.
 
-No Linux / Termux / Ubuntu:
+On Linux / Termux / Ubuntu:
 
 ```bash
 pkg install zip
-# ou
+# or
 apt install zip
 ```
 
 ---
 
-## 📦 Estrutura esperada
+## 📦 Expected structure
 
-Você precisa de uma pasta base com os arquivos do Lottie. Exemplo:
+You need a base folder containing the Lottie files. Example:
 
 ```
 src/
@@ -42,13 +42,13 @@ src/
            └── animation_secondary.json
 ```
 
-Esse arquivo JSON precisa já conter uma imagem em base64 dentro dele, porque o builder vai substituir essa imagem automaticamente.
+This JSON file must already contain a base64 image inside it, because the builder will automatically replace that image.
 
 ---
 
-## 🚀 Como usar
+## 🚀 How to use
 
-### Importe a função
+### Import the function
 
 ```js
 const { buildLottieSticker } = require("./src/index");
@@ -56,7 +56,7 @@ const { buildLottieSticker } = require("./src/index");
 
 ---
 
-### Exemplo simples
+### Simple example
 
 ```js
 const path = require("path");
@@ -72,7 +72,7 @@ const output = await buildLottieSticker({
 
 ---
 
-### Enviar no WhatsApp com Baileys
+### Send on WhatsApp with Baileys
 
 ```js
 const fs = require("fs");
@@ -85,50 +85,55 @@ await client.sendMessage(from, {
 
 ---
 
-## 🧠 Parâmetros
+## 🧠 Parameters
 
-| Nome | Tipo | Obrigatório | Descrição |
-|------|------|-------------|-----------|
-| `baseFolder` | string | ✅ | Pasta base do Lottie |
-| `buffer` | Buffer | ❌ | Imagem em memória |
-| `imagePath` | string | ❌ | Caminho da imagem |
-| `mime` | string | ❌ | Tipo da imagem (detectado automaticamente se usar `imagePath`) |
-| `output` | string | ❌ | Caminho do arquivo `.was` final |
-| `jsonRelativePath` | string | ❌ | Caminho do JSON dentro da pasta base |
-
----
-
-## ⚠️ Regras importantes
-
-- Você precisa enviar **`buffer` ou `imagePath`**
-- Formatos suportados:
-  - PNG
-  - JPG / JPEG
-  - WEBP
-- O JSON do Lottie precisa já ter uma imagem em base64 embutida
-- O código apenas substitui a imagem existente, ele não cria a estrutura do Lottie do zero
+| Name               | Type   | Required | Description                                       |
+| ------------------ | ------ | -------- | ------------------------------------------------- |
+| `baseFolder`       | string | ✅        | Base Lottie folder                                |
+| `buffer`           | Buffer | ❌        | Image in memory                                   |
+| `imagePath`        | string | ❌        | Image file path                                   |
+| `mime`             | string | ❌        | Image type (auto-detected if you use `imagePath`) |
+| `output`           | string | ❌        | Final `.was` file path                            |
+| `jsonRelativePath` | string | ❌        | JSON path inside the base folder                  |
 
 ---
 
-## 💥 Erros comuns
+## ⚠️ Important rules
 
-### `Mime não detectado`
-Você não enviou `mime` nem `imagePath`
+* You must provide **`buffer` or `imagePath`**
+* Supported formats:
 
-### `JSON sem assets`
-O arquivo JSON está inválido ou não possui a estrutura esperada
-
-### `Nenhuma imagem base64 encontrada no Lottie`
-O teu arquivo Lottie não contém imagem embutida em base64 para substituir
-
-### `zip não encontrado`
-O comando `zip` não está instalado no sistema
+  * PNG
+  * JPG / JPEG
+  * WEBP
+* The Lottie JSON must already contain an embedded base64 image
+* The code only replaces the existing image; it does not create the Lottie structure from scratch
 
 ---
 
-## 🛠️ Dica útil
+## 💥 Common errors
 
-Se quiser usar diretamente com imagem recebida do WhatsApp, você pode pegar o buffer e mandar pro builder:
+### `Mime not detected`
+
+You did not provide `mime` or `imagePath`
+
+### `JSON without assets`
+
+The JSON file is invalid or does not contain the expected structure
+
+### `No base64 image found in Lottie`
+
+Your Lottie file does not contain an embedded base64 image to replace
+
+### `zip not found`
+
+The `zip` command is not installed on the system
+
+---
+
+## 🛠️ Useful tip
+
+If you want to use it directly with an image received from WhatsApp, you can grab the buffer and send it to the builder:
 
 ```js
 const buffer = await getFileBuffer(message, "image");
@@ -143,29 +148,30 @@ const output = await buildLottieSticker({
 
 ---
 
-## 🚧 Status do projeto
+## 🚧 Project status
 
-> ⚠️ **VERSÃO BETA**
+> ⚠️ **BETA VERSION**
 >
-> Esse projeto ainda está em fase beta.
-> Dependendo do arquivo Lottie usado, algumas animações podem não funcionar corretamente.
-> Ainda não existe suporte garantido para todos os tipos de estrutura Lottie.
+> This project is still in beta.
+> Depending on the Lottie file used, some animations may not work correctly.
+> There is still no guaranteed support for all Lottie structure types.
 
 ---
 
-## 👑 Créditos
+## 👑 Credits
 
-Desenvolvido por **Pedrozz Mods**
+Developed by **Pedrozz Mods**
 
-Esse projeto ainda está em desenvolvimento e na versão beta.
-Se for usar, modificar ou compartilhar, mantenha os créditos.
+This project is still under development and in beta.
+If you use, modify, or share it, keep the credits.
 
-Grupo: https://chat.whatsapp.com/C21cogFUmKABh9e3qyexSQ?mode=gi_t
-Canal: https://whatsapp.com/channel/0029Vb8CYiZChq6RIEfS7K1D
+Group: [https://chat.whatsapp.com/C21cogFUmKABh9e3qyexSQ?mode=gi_t](https://chat.whatsapp.com/C21cogFUmKABh9e3qyexSQ?mode=gi_t)
+Channel: [https://whatsapp.com/channel/0029Vb8CYiZChq6RIEfS7K1D](https://whatsapp.com/channel/0029Vb8CYiZChq6RIEfS7K1D)
 
 ---
 
 ### Footer
 
-Feito por **Pedrozz Mods**  
-Projeto em **versão beta**, sujeito a mudanças e possíveis erros.
+Made by **Pedrozz Mods**
+Project in **beta version**, subject to changes and possible bugs.
+
