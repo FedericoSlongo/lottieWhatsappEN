@@ -160,6 +160,9 @@ Desenvolvido por **Pedrozz Mods**
 Esse projeto ainda está em desenvolvimento e na versão beta.
 Se for usar, modificar ou compartilhar, mantenha os créditos.
 
+Grupo: https://chat.whatsapp.com/C21cogFUmKABh9e3qyexSQ?mode=gi_t
+Canal: https://whatsapp.com/channel/0029Vb8CYiZChq6RIEfS7K1D
+
 ---
 
 ### Footer
